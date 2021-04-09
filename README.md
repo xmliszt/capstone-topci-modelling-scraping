@@ -6,7 +6,7 @@ Scaping for Topic Modelling - Capstone S21
 
 Replace **cookie**
 
-Assume the company handle is "APPL.O"
+Assume the company handle is "AAPL.O"
 
 ```
 python scrape.py AAPL.O
