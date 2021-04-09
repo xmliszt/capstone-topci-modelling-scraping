@@ -1,3 +1,4 @@
+import time
 import sys
 import requests
 import json
@@ -8,10 +9,14 @@ from tqdm import tqdm
 if len(sys.argv) <= 1:
     print("Please provide company ID (universe)!")
     exit(1)
+
 universe = sys.argv[1]
 
 if "@RIC" not in universe:
     universe += "@RIC"
+
+if not os.path.exists("data"):
+    os.mkdir("data")
 
 FORMULAS.extend([
     "AddSource=True",
@@ -53,6 +58,8 @@ headers = {
 }
 
 
+start_time = time.time()
+
 response = requests.post(
     "https://apac1.apps.cp.thomsonreuters.com/apps/udf/msf/", data=json.dumps(request_payload), headers=headers)
 
@@ -60,9 +67,6 @@ data = response.json()
 
 if response.status_code != 200:
     print("ERROR: ", response.content)
-
-# with open(os.path.join("json", json_filename), "w") as f:
-#     json.dump(data, f)
 
 results = data['r']
 
@@ -88,9 +92,12 @@ for formula in tqdm(FORMULAS[:-2], desc="Processing formulas..."):
             continue
         abstract = abstract.replace("\n", " ")
 
-        with open(topic_path+"/{}.txt".format(count), "w", encoding="utf-8") as fh:
+        with open(topic_path+"/{}-{}.txt".format(count, universe), "w", encoding="utf-8") as fh:
             fh.write(abstract)
         count += 1
     idx += 1
 
 print("Done scraping for {}".format(universe))
+
+elapsed = time.time() - start_time
+print("Took {} ms".format(elapsed*1000))
