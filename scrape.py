@@ -37,6 +37,8 @@ request_payload = {
     }
 }
 
+# Find this endpoint:	https://apac1.apps.cp.thomsonreuters.com/apps/udf/msf/ POST
+# and Replace this!
 cookie = "traacRef={%22initial-referring-domain%22:%22apac1.apps.cp.thomsonreuters.com%22%2C%22initial-referrer%22:%22https://apac1.apps.cp.thomsonreuters.com/web/Apps/Homepage/?locale=en-US%22}; tid=817a1c17-afab-44c7-c4cc-bd0928c48f56; BIGipServerDACT-ERPCPRP-80=2811341066.20480.0000; userId=GESG1-97598; enableFeature=; disableFeature=; CSS=auto; trace=; BIGipServerHDCP-DATACLOUD-VIP-1080=1236400394.45845.0000; SAFFINITY=FE85A0BBB80E85289056D118FC889165; signBackUrl=https%3A%2F%2Fapac1.apps.cp.thomsonreuters.com%2Fweb%2FApps%2FCorp; iPlanetDirectoryPro=AQIC5wM2LY4SfcxNxyaUrMck0PXDW506chh3JX%2FTynw3W%2B0%3D%40AAJTSQACMzAAAlNLABQtMjc2MDg0MTQ3NTE4MzAzMjA4NAACUzEAAjI0%23; sessionId=f5a8b6f2-4b2b-4a69-88f8-d55d8f134914; sharedSessionStartTime=1617959907217"
 
 headers = {

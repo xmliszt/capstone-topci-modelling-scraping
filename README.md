@@ -4,6 +4,8 @@ Scaping for Topic Modelling - Capstone S21
 
 ## How To Run
 
+Replace **cookie**
+
 Assume the company handle is "APPL.O"
 
 ```
