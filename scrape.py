@@ -65,10 +65,17 @@ start_time = time.time()
 response = requests.post(
     "https://apac1.apps.cp.thomsonreuters.com/apps/udf/msf/", data=json.dumps(request_payload), headers=headers)
 
-data = response.json()
-
 if response.status_code != 200:
     print("ERROR: ", response.content)
+
+try:
+    data = response.json()
+except Exception:
+    print("ERROR: unable to fetch data! Please login and grab the latest cookie!")
+    exit(1)
+
+with open("json/{}.json".format(universe), "w", encoding="utf-8") as fp:
+    json.dump(data, fp)
 
 results = data['r']
 
