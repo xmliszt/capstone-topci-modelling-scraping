@@ -119,5 +119,5 @@ def scrape(universe):
 
 
 if __name__ == "__main__":
-    universie = sys.argv[1]
+    universe = sys.argv[1]
     scrape(universe)
