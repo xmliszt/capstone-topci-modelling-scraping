@@ -43,7 +43,6 @@ ENV_FORMULAS = [
     "TR.TakebackRecyclingInitiatives",
     "TR.ProductEnvResponsibleUse",
     "TR.GMOProducts",
-    "TR.Agrochemical5PctRevenue",
     "TR.AnimalTesting",
     "TR.AnimalTestingCosmetics",
     "TR.AnimalTestingReduction",

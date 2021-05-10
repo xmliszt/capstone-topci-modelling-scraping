@@ -139,7 +139,7 @@ def scrape(universe, category="environment"):
                 "data", category, topic_name)
             if not os.path.exists(topic_path):
                 os.mkdir(topic_path)
-            print(topic_name, idx, "offset:", offset)
+            # print(topic_name, idx, "offset:", offset)
             with open(topic_path+"/{}-{}.txt".format(year, universe), "w", encoding="utf-8") as fh:
                 fh.write(abstract)
 
