@@ -3,12 +3,20 @@ import sys
 import requests
 import json
 import os
-from formula import FORMULAS
+from formula import ENV_FORMULAS, SOCIAL_FORMULAS, GOVERNANVE_FORMULAS
 from config import COOKIE
 from tqdm import tqdm
 
 
-def scrape(universe):
+def scrape(universe, category="environment"):
+
+    FORMULAS = None
+    if category == "environment":
+        FORMULAS = ENV_FORMULAS
+    if category == "social":
+        FORMULAS = SOCIAL_FORMULAS
+    if category == "governance":
+        FORMULAS = GOVERNANVE_FORMULAS
 
     formulas = FORMULAS.copy()
 
@@ -24,8 +32,14 @@ def scrape(universe):
     if not os.path.exists("data"):
         os.mkdir("data")
 
+    if not os.path.exists(os.path.join("data", category)):
+        os.mkdir(os.path.join("data", category))
+
     if not os.path.exists("json"):
         os.mkdir("json")
+
+    if not os.path.exists(os.path.join("json", category)):
+        os.mkdir(os.path.join("json", category))
 
     formulas.extend([
         "AddSource=True",
@@ -66,8 +80,8 @@ def scrape(universe):
 
     start_time = time.time()
 
-    if os.path.exists("json/{}.json".format(universe)):
-        with open("json/{}.json".format(universe), "r", encoding="utf-8") as fp:
+    if os.path.exists("json/{}/{}.json".format(category, universe)):
+        with open("json/{}/{}.json".format(category, universe), "r", encoding="utf-8") as fp:
             data = json.load(fp)
     else:
         response = requests.post(
@@ -82,7 +96,7 @@ def scrape(universe):
             print("ERROR: unable to fetch data! Please login and grab the latest cookie!")
             exit(1)
 
-        with open("json/{}.json".format(universe), "w", encoding="utf-8") as fp:
+        with open("json/{}/{}.json".format(category, universe), "w", encoding="utf-8") as fp:
             json.dump(data, fp)
 
     results = data['r']
@@ -103,7 +117,10 @@ def scrape(universe):
             if prev_year is not None and year == prev_year:
                 offset += 1
                 continue
-            prev_year = year
+            if prev_year is not None and year > prev_year:
+                prev_year = None
+            else:
+                prev_year = year
             if len(v) <= 18:
                 continue
             abstract = v[17].get("___MSFVALUE", None)
@@ -119,7 +136,7 @@ def scrape(universe):
             topic_idx = (idx - offset - 1) // 7
             topic_name = formulas[:-2][topic_idx].split(".")[-1]
             topic_path = os.path.join(
-                "data", topic_name)
+                "data", category, topic_name)
             if not os.path.exists(topic_path):
                 os.mkdir(topic_path)
             print(topic_name, idx, "offset:", offset)
