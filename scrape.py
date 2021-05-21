@@ -152,5 +152,6 @@ def scrape(universe, category="environment"):
 
 
 if __name__ == "__main__":
-    universe = sys.argv[1]
-    scrape(universe)
+    category = sys.argv[1]
+    universe = sys.argv[2]
+    scrape(universe, category)

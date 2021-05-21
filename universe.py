@@ -1,3 +1,0 @@
-UNIVERSES = [
-    "AAPL.O@RIC"
-]

@@ -1,6 +1,6 @@
 # capstone-topci-modelling-scraping
 
-Scaping for Topic Modelling - Capstone S21
+Simple Scraping Tool in Refinitiv for Topic Modelling - Capstone S21
 
 ## How To Run
 
@@ -12,18 +12,24 @@ pip install -r requirements.txt
 
 Replace **cookie** in `config.py`
 
+### Single Universe
+
 Assume the company handle is "AAPL.O"
 
+Choose a category first from "environment", "social", "governance" for the first argument
+
 ```
-python scrape.py AAPL.O
+python scrape.py environment AAPL.O
 ```
 
 This will create topics under `data/` folder and put pure text abstract inside
 
-## Multiple universes
+### Multiple Universes
+
+Second argument will be the path to a txt file in which each line is a universe
 
 ```
-python main.py src/file.txt
+python main.py social src/file.txt
 ```
 
 `file.txt` containing company universe (ID) line by line like this:
