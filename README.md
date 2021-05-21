@@ -4,6 +4,12 @@ Scaping for Topic Modelling - Capstone S21
 
 ## How To Run
 
+Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
 Replace **cookie** in `config.py`
 
 Assume the company handle is "AAPL.O"
