@@ -4,7 +4,7 @@ Scaping for Topic Modelling - Capstone S21
 
 ## How To Run
 
-Replace **cookie**
+Replace **cookie** in `config.py`
 
 Assume the company handle is "AAPL.O"
 
