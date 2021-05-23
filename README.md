@@ -12,6 +12,21 @@ pip install -r requirements.txt
 
 Replace **cookie** in `config.py`
 
+### Scraping Universes
+
+You need a text file containing the company's label ID (i.e. "universe") per line. We have a script that is used to scrape the universes given the company's names in a CSV file. Use `universe_scraper.py` to scrape the universes. Change `companies_csv_path` to your file that contains a list of company names.
+
+```bash
+python universe_scraper.py
+```
+
+The output files are defined in the python script as well, you can change it to your own preferred filename.
+
+```python
+found_file = "processed.txt"
+not_found_file = "unprocessed.txt"
+```
+
 ### Single Universe
 
 Assume the company handle is "AAPL.O"
